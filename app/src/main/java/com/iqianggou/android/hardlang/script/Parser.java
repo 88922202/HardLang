@@ -18,9 +18,11 @@ public class Parser {
     }
 
     public static int getIntParam(String param) throws IllegalParamException{
-        try {
+        if (param.matches("^-?[1-9]\\d*|0")){
             return Integer.valueOf(param);
-        }catch (NumberFormatException e){
+        }else if (param.matches("^\\w+")){
+            return getConstantParam(param);
+        }else {
             throw new IllegalParamException("Invalid int param.");
         }
     }
@@ -49,6 +51,14 @@ public class Parser {
             return param.substring(1, param.length() - 1);
         }catch (Exception e){
             throw new IllegalParamException("Invalid string param");
+        }
+    }
+
+    public static int getConstantParam(String param) throws IllegalParamException{
+        try {
+            return ConstantMap.getConstant(param);
+        }catch (Exception e){
+            throw new IllegalParamException("Invalid constant param");
         }
     }
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.iqianggou.android.hardlang.script.Command;
+import com.iqianggou.android.hardlang.script.ConstantMap;
 import com.iqianggou.android.hardlang.script.IExecuteScript;
 import com.iqianggou.android.hardlang.script.Parser;
 import com.iqianggou.android.hardlang.script.ScriptEngine;
@@ -106,6 +108,11 @@ public class MainActivity extends AppCompatActivity implements IExecuteScript {
                     int time = Parser.getIntParam(tokens[1]);
                     pause(time);
                     break;
+                case Command.DEFINE:
+                    String key = tokens[1];
+                    int value = Parser.getIntParam(tokens[2]);
+                    ConstantMap.putConstant(key, value);
+                    break;
                 default:
                     throw new IllegalCommandException("Invalid command.");
             }
@@ -147,8 +154,8 @@ public class MainActivity extends AppCompatActivity implements IExecuteScript {
     }
 
     private void moveNPC(int from, int to){
-        mHistory += getResources().getString(R.string.npc_move, from, to);
-        mConsole.setText(mHistory);
+        mHistory = getResources().getString(R.string.npc_move, from, to);
+        mConsole.setText(Html.fromHtml(mHistory));
     }
 
     private void showTextBox(String message){

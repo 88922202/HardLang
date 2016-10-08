@@ -5,8 +5,9 @@ package com.iqianggou.android.hardlang.script;
  */
 
 public class Command {
-    public static final String SET_NPC_DIR = "SetNPCDir";
-    public static final String MOVE_NPC = "MoveNPC";
-    public static final String PAUSE = "Pause";
-    public static final String SHOW_TEXT_BOX = "ShowTextBox";
+    public static final String SET_NPC_DIR      = "SetNPCDir";
+    public static final String MOVE_NPC         = "MoveNPC";
+    public static final String PAUSE            = "Pause";
+    public static final String SHOW_TEXT_BOX    = "ShowTextBox";
+    public static final String DEFINE           = "Define";
 }
