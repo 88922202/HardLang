@@ -39,4 +39,11 @@
         android:layout_height="match_parent"
         android:id="@+id/tv_console"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:text="选择脚本"
+        android:id="@+id/btn_file"/>
+
 </FrameLayout>

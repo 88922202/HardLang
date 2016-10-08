@@ -16,18 +16,18 @@ public class ScriptEngine {
         mExecutor = executor;
     }
 
-    public void startEngine(){
-        Thread worker = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                loadScript("move.txt");
-            }
-        });
-        worker.start();
+    public void startEngine(final String filePath){
+//        Thread worker = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+                loadScript(filePath);
+//            }
+//        });
+//        worker.start();
     }
 
-    private void loadScript(String fileName){
-        String script = ScriptLoader.loadScript(HardApplication.getInstance(), fileName);
+    private void loadScript(String filePath){
+        String script = ScriptLoader.loadScript(HardApplication.getInstance(), filePath);
         Log.d("ScriptEngine", script);
         String[] commands = Parser.parseScript(script);
         for (String eachCommand : commands){

@@ -2,6 +2,8 @@ package com.iqianggou.android.hardlang.script;
 
 import android.content.Context;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -11,10 +13,10 @@ import java.io.InputStream;
 
 public class ScriptLoader {
 
-    public static String loadScript(Context context, String fileName){
+    public static String loadScript(Context context, String filePath){
         try {
             //Return an AssetManager instance for your application's package
-            InputStream is = context.getAssets().open(fileName);
+            InputStream is = new FileInputStream(new File(filePath));
             int size = is.available();
 
             // Read the entire asset into a local byte buffer.
