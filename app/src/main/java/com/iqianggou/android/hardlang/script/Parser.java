@@ -14,6 +14,10 @@ public class Parser {
         return command.split(" ");
     }
 
+    public static int getIntParam(String param){
+        return Integer.valueOf(param);
+    }
+
     public static float getFloatParam(String param){
         return Float.valueOf(param);
     }

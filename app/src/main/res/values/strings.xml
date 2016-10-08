@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">HardLang</string>
+    <string name="npc_rotate">NPC 转向了 %1$s.\n</string>
+    <string name="npc_move">NPC 从 %1$d 移动到了 %2$d.\n</string>
+    <string name="npc_speak">NPC 说 %1$s.\n</string>
+    <string name="npc_rest">NPC 休息了 %1$d 秒.\n</string>
 </resources>

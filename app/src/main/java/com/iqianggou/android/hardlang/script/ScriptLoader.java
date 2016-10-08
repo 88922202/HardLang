@@ -23,7 +23,7 @@ public class ScriptLoader {
             is.close();
 
             // Convert the buffer into a string.
-            return new String(buffer, "GB2312");
+            return new String(buffer, "UTF-8");
         } catch (IOException e) {
             // Should never happen!
             throw new RuntimeException(e);

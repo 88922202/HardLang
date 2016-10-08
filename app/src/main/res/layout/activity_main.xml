@@ -6,32 +6,37 @@
     android:layout_height="match_parent"
     tools:context="com.iqianggou.android.hardlang.MainActivity">
 
-    <ImageView
+    <!--<ImageView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="@drawable/bk"-->
+        <!--android:id="@+id/iv_background" />-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:orientation="vertical"-->
+        <!--android:id="@+id/ll_people">-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textColor="@android:color/white"-->
+            <!--android:id="@+id/tv_dialog"/>-->
+
+        <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:src="@drawable/people"-->
+            <!--android:id="@+id/iv_people"/>-->
+
+    <!--</LinearLayout>-->
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bk"
-        android:id="@+id/iv_background" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        android:id="@+id/ll_people">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:id="@+id/tv_dialog"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/people"
-            android:id="@+id/iv_people"/>
-
-    </LinearLayout>
+        android:id="@+id/tv_console"/>
 
 </FrameLayout>

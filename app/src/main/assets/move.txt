@@ -1,1 +1,4 @@
 MoveNPC 0 200
+ShowTextBox "欢迎来到新手村！"
+Pause 5
+SetNPCDir "Up"

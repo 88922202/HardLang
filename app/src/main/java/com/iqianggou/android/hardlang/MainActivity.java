@@ -22,10 +22,10 @@ import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity implements IExecuteScript {
 
-    private TextView mDialog;
-    private LinearLayout mPeople;
+    private TextView mConsole;
 
     private ScriptEngine engine;
+    private String mHistorty = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,26 +39,7 @@ public class MainActivity extends AppCompatActivity implements IExecuteScript {
     }
 
     private void findViews(){
-        mPeople = (LinearLayout) findViewById(R.id.ll_people);
-        mDialog = (TextView) findViewById(R.id.tv_dialog);
-    }
-
-    private void setupTranslateAnimation(float fromXDelta, float toXDelta, float fromYDelta, float toYDelta){
-        Log.d("ScriptEngine", "Start move");
-        Log.d("ScriptEngine", "Thread id = " + Thread.currentThread().getId());
-        final TranslateAnimation moveAnimation = new TranslateAnimation(fromXDelta, toXDelta, fromYDelta, toYDelta);
-        moveAnimation.setDuration(3000);
-        moveAnimation.setFillAfter(true);
-        mPeople.startAnimation(moveAnimation);
-    }
-
-    private void setupRotateAnimation(float fromDegrees, float toDegrees, float pivotX, float pivotY){
-        Log.d("ScriptEngine", "Start rotate");
-        Log.d("ScriptEngine", "Thread id = " + Thread.currentThread().getId());
-        final RotateAnimation rotateAnimation = new RotateAnimation(fromDegrees, toDegrees, Animation.RELATIVE_TO_SELF, pivotX, Animation.RELATIVE_TO_SELF, pivotY);
-        rotateAnimation.setDuration(1000);
-        rotateAnimation.setFillAfter(true);
-        mPeople.startAnimation(rotateAnimation);
+        mConsole = (TextView) findViewById(R.id.tv_console);
     }
 
 
@@ -70,8 +51,8 @@ public class MainActivity extends AppCompatActivity implements IExecuteScript {
                 setNPCDir(dir);
                 break;
             case Command.MOVE_NPC:
-                float from = Parser.getFloatParam(tokens[1]);
-                float to = Parser.getFloatParam(tokens[2]);
+                int from = Parser.getIntParam(tokens[1]);
+                int to = Parser.getIntParam(tokens[2]);
                 moveNPC(from, to);
                 break;
             case Command.SHOW_TEXT_BOX:
@@ -79,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements IExecuteScript {
                 showTextBox(message);
                 break;
             case Command.PAUSE:
-                float time = Parser.getFloatParam(tokens[1]);
+                int time = Parser.getIntParam(tokens[1]);
                 pause(time);
                 break;
             default:
@@ -89,40 +70,46 @@ public class MainActivity extends AppCompatActivity implements IExecuteScript {
     }
 
     private void setNPCDir(String dir){
+
+        String direction = "";
+
         switch (dir){
             case "Up":
-                setupRotateAnimation(0, 90, 0.5f, 0.5f);
+                direction = "北方";
                 break;
             case "Left":
-                setupRotateAnimation(0, 0, 0.5f, 0.5f);
+                direction = "西方";
                 break;
             case "Right":
-                setupRotateAnimation(0, 180, 0.5f, 0.5f);
+                direction = "东方";
                 break;
             case "Down":
-                setupRotateAnimation(0, 270, 0.5f, 0.5f);
+                direction = "南方";
                 break;
             default:
                 Log.e("ScriptEngine", "Wrong dir.");
                 break;
         }
 
+        mHistorty += getResources().getString(R.string.npc_rotate, direction);
+        mConsole.setText(mHistorty);
+
+
     }
 
-    private void moveNPC(float from, float to){
-        setupTranslateAnimation(from, to, 0, 0);
+    private void moveNPC(int from, int to){
+        mHistorty += getResources().getString(R.string.npc_move, from, to);
+        mConsole.setText(mHistorty);
     }
 
     private void showTextBox(String message){
         Log.d("ScriptEngine", "Show text " + message);
-        mDialog.setText(message);
+        mHistorty += getResources().getString(R.string.npc_speak, message);
+        mConsole.setText(mHistorty);
     }
 
-    private void pause(float time){
-        try {
-            Thread.sleep((long) time);
-        }catch (InterruptedException e){
-            Log.e("ScriptEngine", e.getMessage());
-        }
+    private void pause(int time){
+        mHistorty += getResources().getString(R.string.npc_rest, time);
+        mConsole.setText(mHistorty);
     }
 }
